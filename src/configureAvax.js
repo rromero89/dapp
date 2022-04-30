@@ -41,6 +41,6 @@ import detectEthereumProvider from '@metamask/detect-provider';
     } else {
       console.error('Please install MetaMask');
     }
-};
+}
 
 export default configureAvax;
