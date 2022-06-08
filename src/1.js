@@ -1,10 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
-//import configureAvax from './configureAvax';
-import MetamaskProvider from './metamaskProvider';
+import configureAvax from './configureAvax';
 
 
-/*function App() {
+function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -23,25 +22,7 @@ import MetamaskProvider from './metamaskProvider';
       </header>
     </div>
   );
-}*/
-
-function App() {
-  return (
-    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-      <StylesProvider injectFirst>
-        <Paper>
-          <Router>
-            <Web3ReactProvider getLibrary={getLibrary}>
-              <MetamaskProvider>
-              {...children components}
-              </MetamaskProvider>
-            </Web3ReactProvider>
-          </Router>
-        </Paper>
-      </StylesProvider>
-    </ThemeProvider>
-  );
-
 }
 
 export default App;
+// Copia del Archivo App.js
