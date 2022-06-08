@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
 import configureAvax from './configureAvax';
-import connect from './connect';
 
 
 function App() {
@@ -19,11 +18,11 @@ function App() {
           rel="noopener noreferrer">
           Reservo app
         </a>
-       // <button onClick={()=>configureAvax()}>Connect to Wallet</button>
-        <button onClick={()=>connect()}>Connect to Wallet</button>
+        <button onClick={()=>configureAvax()}>Connect to Wallet</button>
       </header>
     </div>
   );
 }
 
 export default App;
+// Copia del Archivo App.js
