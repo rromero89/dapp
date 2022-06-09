@@ -115,9 +115,22 @@ return (
     //remember the active boolean from useReactWeb3() stores a bool
     //depending on if the user is or is not connected there for we can 
     //use this as a conditon to render the button saying "Connect Wallet"
-    //or displaying their address as the text.
-    <div>
-          {active ? <button onClick={connectOnClick}>{account.substring(0, 6)}...{account.substring(account.length - 4)}</button> : <button onClick={connectOnClick}>Connect Wallet</button>}
-    </div>
+    //or displaying their address as the text.    
+    <div className="App">
+    <header className="App-header">
+      <img src={logo} className="App-logo" alt="logo" />
+      <p>
+        Edit <code>src/App.js</code> and save to reload.
+      </p>
+      <a
+        className="App-link"
+        href="https://reservoapp.com/"
+        target="_blank"
+        rel="noopener noreferrer">
+        Reservo app
+      </a>
+      {active ? <button onClick={connectOnClick}>{account.substring(0, 6)}...{account.substring(account.length - 4)}</button> : <button onClick={connectOnClick}>Connect Wallet</button>}
+    </header>
+  </div>
   );
 }
