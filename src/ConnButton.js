@@ -4,7 +4,7 @@ import detectEthereumProvider from '@metamask/detect-provider';
 import { useWeb3React } from "@web3-react/core";
 import { injected } from './injectedConnectors';
 
-export default function connButton() {
+export default function ConnButton() {
 
 var web3;
 var accounts;
