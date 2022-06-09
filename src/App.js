@@ -4,6 +4,8 @@ import './App.css';
 import Web3 from 'web3'; 
 import { useWeb3React } from "@web3-react/core";
 import { injected } from './injectedConnectors';
+import detectEthereumProvider from '@metamask/detect-provider';
+
 
 export default function App() {
 
@@ -22,7 +24,29 @@ const { active, account, library, connector, activate, deactivate } = useWeb3Rea
 //set up an elemnt in local storage that we use to hold the connected account
 var acc = localStorage.getItem("account");
 
+const AVALANCHE_MAINNET_PARAMS = {
+    chainId: '0xA86A',
+    chainName: 'Avalanche Mainnet C-Chain',
+    nativeCurrency: {
+      name: 'Avalanche',
+      symbol: 'AVAX',
+      decimals: 18
+    },
+    rpcUrls: ['https://api.avax.network/ext/bc/C/rpc'],
+    blockExplorerUrls: ['https://snowtrace.io/']
+}//fin AVALANCHE_MAINNET_PARAMS
 
+const AVALANCHE_TESTNET_PARAMS = {
+chainId: '0xA869',
+chainName: 'Avalanche Testnet C-Chain',
+nativeCurrency: {
+name: 'Avalanche',
+symbol: 'AVAX',
+decimals: 18
+},
+rpcUrls: ['https://api.avax-test.network/ext/bc/C/rpc'],
+blockExplorerUrls: ['https://testnet.snowtrace.io/']
+} //fin AVALANCHE_TESTNET_PARAMS
 
 //function that initialises web3.js
 const connectWalletHandler = () => {
@@ -30,7 +54,11 @@ const connectWalletHandler = () => {
         console.log('MetaMask Here!');
         web3 = new Web3(window.ethereum);
 
-        window.ethereum.request({ method: 'eth_requestAccounts'});
+        window.ethereum.request({ 
+            method: 'eth_requestAccounts'});
+        window.ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [AVALANCHE_TESTNET_PARAMS]});
         
     } else {
         console.log('Need to install MetaMask');
