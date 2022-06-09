@@ -1,9 +1,10 @@
+import React, { useState, useEffect } from 'react'; 
 import logo from './logo.svg';
-import './App.css';
-import configureAvax from './configureAvax';
+import './App.css';  
+import connButton from './connect';
 
 
-function App() {
+function App() {  
   return (
     <div className="App">
       <header className="App-header">
@@ -18,9 +19,8 @@ function App() {
           rel="noopener noreferrer">
           Reservo app
         </a>
-        <button onClick={()=>configureAvax()}>Connect to Wallet</button>
       </header>
-    </div>
+    </div> 
   );
 }
 
