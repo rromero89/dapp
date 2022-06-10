@@ -4,6 +4,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+polyfill [polyfill-node-core-modules-in-webpack-5](https://www.alchemy.com/blog/how-to-polyfill-node-core-modules-in-webpack-5) to view it in your browser.
+https://www.alchemy.com/blog/how-to-polyfill-node-core-modules-in-webpack-5
+### `npm install --save-dev react-app-rewired`
+
 In the project directory, you can run:
 
 ### `npm start`
