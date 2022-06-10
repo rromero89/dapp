@@ -23,6 +23,7 @@ const { active, account, library, connector, activate, deactivate } = useWeb3Rea
 
 //set up an elemnt in local storage that we use to hold the connected account
 var acc = localStorage.getItem("account");
+console.log('Account: ' + acc);
 
 const AVALANCHE_MAINNET_PARAMS = {
     chainId: '0xA86A',
