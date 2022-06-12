@@ -4,7 +4,8 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App';
-import connButton from './ConnButton';
+import { Web3ReactProvider } from "@web3-react/core";
+import Web3 from "web3";
 import reportWebVitals from './reportWebVitals';
 
 /*ReactDOM.render(
@@ -12,27 +13,45 @@ import reportWebVitals from './reportWebVitals';
     <App />
   </React.StrictMode>,
   document.getElementById('root')
-);*/
+);
 
- const container = document.getElementById('root');
-const root = createRoot(container); // createRoot(container!) if you use TypeScript
-root.render(<App tab="home" />);
-
-reportWebVitals();
-
-
-
-//https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis
-// Before
-/*
-import { render } from 'react-dom';
-const container = document.getElementById('app');
-render(<App tab="home" />, container);
+ReactDOM.render(
+  <React.StrictMode>
+    <Web3ReactProvider getLibrary={getLibrary}>
+      <App />
+    </Web3ReactProvider>
+  </React.StrictMode>,
+  document.getElementById("root")
+);
 */
-// After
-/*
-import { createRoot } from 'react-dom/client';
-const container = document.getElementById('app');
-const root = createRoot(container); // createRoot(container!) if you use TypeScript
-root.render(<App tab="home" />);
-*/
+
+  const getLibrary = (provider) => {
+    return new Web3(provider);
+  };
+
+  const container = document.getElementById('root');
+  const root = createRoot(container); // createRoot(container!) if you use TypeScript
+  root.render(
+    <React.StrictMode>
+      <Web3ReactProvider getLibrary={getLibrary}>   
+        <App tab="home" />
+      </Web3ReactProvider>
+    </React.StrictMode>
+  );
+
+  reportWebVitals();
+
+  //https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis
+  // Before
+  /*
+  import { render } from 'react-dom';
+  const container = document.getElementById('app');
+  render(<App tab="home" />, container);
+  */
+  // After
+  /*
+  import { createRoot } from 'react-dom/client';
+  const container = document.getElementById('app');
+  const root = createRoot(container); // createRoot(container!) if you use TypeScript
+  root.render(<App tab="home" />);
+  */
