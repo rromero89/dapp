@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';    
 import Web3 from 'web3'; 
 import { useWeb3React } from "@web3-react/core";
-import { injected } from './injectedConnectors';
+import { injected } from './utils/injectedConnectors';
 import detectEthereumProvider from '@metamask/detect-provider';
 
 
