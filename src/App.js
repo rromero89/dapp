@@ -21,37 +21,6 @@ const { active, account, library, connector, activate, deactivate } = useWeb3Rea
 var acc = localStorage.getItem("account");
 console.log("Cuenta, en App.js: " + acc);
 
- //function that initialises web3.js
-    const connectWalletHandler = () => {
-        if (window.ethereum && window.ethereum.isMetaMask) {
-            console.log('MetaMask Here!');
-            web3 = new Web3(window.ethereum);
-            window.ethereum.request({ method: 'eth_requestAccounts'});        
-        } else {
-            console.log('Need to install MetaMask');
-            // setErrorMessage('Please install MetaMask browser extension to interact');
-        }
-        console.log(web3.eth.currentProvider);
-    }
-
-    //function that is called on page load if and only if their exists and
-    //item for the user accoun tin local storage
-    async function connectOnLoad() {
-
-        try {
-            
-            //here we use activate to create the connection
-            await activate(injected)
-            connected = true
-          } catch (ex) {
-            console.log(ex)
-          }
-
-          //we use web3.eth to get the accounts to store it in local storage
-          var accounts1 = await web3.eth.getAccounts();
-          acc = localStorage.setItem("account", accounts1);
-    }
-
   //here we use a useEffect so that on page load we can check if there is
     //an account in local storage. if there is we call the connect onLoad func
     //above which allows us to presist the connection and i also call connectWalletHandler

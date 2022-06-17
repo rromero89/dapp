@@ -14,35 +14,25 @@ export function useAvalancheConnect() {
     //active (which is true if the user is connected and false otherwise)
     //activate and deactiveate which we use to instansiate and break the users
     //connection
+    debugger
     const { active, account, library, connector, activate, deactivate } = useWeb3React();
 
     //set up an elemnt in local storage that we use to hold the connected account
     var acc = localStorage.getItem("account");
     console.log("Cuenta, en Hooks.js: " + acc);
 
-    const AVALANCHE_MAINNET_PARAMS = {
-        chainId: '0xA86A',
-        chainName: 'Avalanche Mainnet C-Chain',
-        nativeCurrency: {
-          name: 'Avalanche',
-          symbol: 'AVAX',
-          decimals: 18
-        },
-        rpcUrls: ['https://api.avax.network/ext/bc/C/rpc'],
-        blockExplorerUrls: ['https://snowtrace.io/']
-    }//fin AVALANCHE_MAINNET_PARAMS
+    //here we use a useEffect so that on page load we can check if there is
+    //an account in local storage. if there is we call the connect onLoad func
+    //above which allows us to presist the connection and i also call connectWalletHandler
+    //which sets up web3.js so we can call web3.eth.getAccounts()
+    useEffect(() => {        
+        if (acc != null) {
+        connectOnLoad()
+        }
+        connectWalletHandler()
+    }, []);
 
-    const AVALANCHE_TESTNET_PARAMS = {
-    chainId: '0xA869',
-    chainName: 'Avalanche Testnet C-Chain',
-    nativeCurrency: {
-    name: 'Avalanche',
-    symbol: 'AVAX',
-    decimals: 18
-    },
-    rpcUrls: ['https://api.avax-test.network/ext/bc/C/rpc'],
-    blockExplorerUrls: ['https://testnet.snowtrace.io/']
-    } //fin AVALANCHE_TESTNET_PARAMS
+    
 
     //function that initialises web3.js
     const connectWalletHandler = () => {
@@ -81,18 +71,7 @@ export function useAvalancheConnect() {
           acc = localStorage.setItem("account", accounts1);
     }
 
-     //here we use a useEffect so that on page load we can check if there is
-    //an account in local storage. if there is we call the connect onLoad func
-    //above which allows us to presist the connection and i also call connectWalletHandler
-    //which sets up web3.js so we can call web3.eth.getAccounts()
-    useEffect(() => {        
-        if (acc != null) {
-        connectOnLoad()
-        }
-        connectWalletHandler()
-    }, []);
-
-
+     
     //however in the case where there is no item in local storage we use this
     //function to connect which is called when we click the connect button. its
     //essentially the same but we check if local storage is null if it is we activate
