@@ -4,7 +4,7 @@ import { useWeb3React } from "@web3-react/core";
 import { injected } from './injectedConnectors';  
 import { avaxMainNet,avaxTestNet } from './constants';  
 
-function MetamaskProvider() {
+const MetamaskProvider = () => {
 
     var web3;
     var accounts;
