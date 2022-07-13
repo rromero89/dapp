@@ -28,7 +28,7 @@ ReactDOM.render(
   const getLibrary = (provider) => {
     const library = new Web3(provider)
     library.pollingInterval = 12000
-    return library
+    return library;
   }
   
   /*const getLibrary = (provider) => {
@@ -39,19 +39,11 @@ ReactDOM.render(
   const root = createRoot(container); // createRoot(container!) if you use TypeScript
   root.render(
     <React.StrictMode>
-        
-        <App tab="home" />
-       
-    </React.StrictMode>
-  );
-/*
-  root.render(
-    <React.StrictMode>
       <Web3ReactProvider getLibrary={getLibrary}>   
         <App tab="home" />
       </Web3ReactProvider>
     </React.StrictMode>
-  );*/
+  );
 
   reportWebVitals();
 
