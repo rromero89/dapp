@@ -27,9 +27,9 @@ function MetamaskProvider() {
             console.log('MetaMask Here!');
             web3 = new Web3(window.ethereum);
            
-            window.ethereum.request({method: 'wallet_addEthereumChain',
-                params: [avaxTestNet]});
-            
+            window.ethereum.request({
+                method: 'wallet_addEthereumChain',
+                params: [avaxTestNet]});            
             window.ethereum.request({method: 'eth_requestAccounts'});
             
         } else {

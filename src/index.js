@@ -39,11 +39,19 @@ ReactDOM.render(
   const root = createRoot(container); // createRoot(container!) if you use TypeScript
   root.render(
     <React.StrictMode>
+        
+        <App tab="home" />
+       
+    </React.StrictMode>
+  );
+/*
+  root.render(
+    <React.StrictMode>
       <Web3ReactProvider getLibrary={getLibrary}>   
         <App tab="home" />
       </Web3ReactProvider>
     </React.StrictMode>
-  );
+  );*/
 
   reportWebVitals();
 
