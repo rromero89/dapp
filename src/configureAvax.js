@@ -29,12 +29,12 @@ import detectEthereumProvider from '@metamask/detect-provider';
       mustBeMetaMask: true
     })
     if (provider) {
-      try {
-        await provider.request({ method: 'eth_requestAccounts'})
+      try {        
         await provider.request({
           method: 'wallet_addEthereumChain',
           params: [AVALANCHE_TESTNET_PARAMS]
         })
+        await provider.request({ method: 'eth_requestAccounts'})
       } catch(e) {
         console.error(e);
       }  

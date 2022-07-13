@@ -6,6 +6,7 @@ import './index.css';
 import App from './App';
 import { Web3ReactProvider } from "@web3-react/core";
 import Web3 from "web3";
+
 import reportWebVitals from './reportWebVitals';
 
 /*ReactDOM.render(
@@ -24,10 +25,15 @@ ReactDOM.render(
   document.getElementById("root")
 );
 */
-
   const getLibrary = (provider) => {
+    const library = new Web3(provider)
+    library.pollingInterval = 12000
+    return library
+  }
+  
+  /*const getLibrary = (provider) => {
     return new Web3(provider);
-  };
+  };*/
 
   const container = document.getElementById('root');
   const root = createRoot(container); // createRoot(container!) if you use TypeScript

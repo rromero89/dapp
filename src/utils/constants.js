@@ -1,4 +1,4 @@
-export const AVALANCHE_MAINNET_PARAMS = {
+export const avaxMainNet = {
     chainId: '0xA86A',
     chainName: 'Avalanche Mainnet C-Chain',
     nativeCurrency: {
@@ -10,7 +10,7 @@ export const AVALANCHE_MAINNET_PARAMS = {
     blockExplorerUrls: ['https://snowtrace.io/']
 }//fin AVALANCHE_MAINNET_PARAMS
 
-export const AVALANCHE_TESTNET_PARAMS = {
+export const avaxTestNet = {
 chainId: '0xA869',
 chainName: 'Avalanche Testnet C-Chain',
 nativeCurrency: {
