@@ -4,19 +4,18 @@ import { useWeb3React } from "@web3-react/core";
 import { injected } from './injectedConnectors';  
 import { avaxMainNet,avaxTestNet } from './constants';  
 
-const MetamaskProvider = () => {
-
+function MetamaskProvider() {    
     var web3;
     var accounts;
-    var connected
+    var connected;
 
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
 
     //here we can destructure out various things from web3React such as
     //active (which is true if the user is connected and false otherwise)
     //activate and deactiveate which we use to instansiate and break the users
     //connection
-    const { active, account, library, connector, activate, deactivate } = useWeb3React()
+    const { active, account, library, connector, activate, deactivate } = useWeb3React();
 
     //set up an elemnt in local storage that we use to hold the connected account
     var acc = localStorage.getItem("account");
@@ -26,29 +25,30 @@ const MetamaskProvider = () => {
         if (window.ethereum && window.ethereum.isMetaMask) {
             console.log('MetaMask Here!');
             web3 = new Web3(window.ethereum);
-           
+
             window.ethereum.request({
                 method: 'wallet_addEthereumChain',
-                params: [avaxTestNet]});            
-            window.ethereum.request({method: 'eth_requestAccounts'});
-            
+                params: [avaxTestNet]
+            });
+            window.ethereum.request({ method: 'eth_requestAccounts' });
+
         } else {
             console.log('Need to install MetaMask');
             // setErrorMessage('Please install MetaMask browser extension to interact');
         }
-        console.log(web3.eth.currentProvider)
-    }
+        console.log(web3.eth.currentProvider);
+    };
 
     //function that is called on page load if and only if their exists and
     //item for the user accoun tin local storage
     async function connectOnLoad() {
 
-        try {            
+        try {
             //here we use activate to create the connection
-            await activate(injected)
-            connected = true
+            await activate(injected);
+            connected = true;
         } catch (ex) {
-            console.log(ex)
+            console.log(ex);
         }
 
         //we use web3.eth to get the accounts to store it in local storage
@@ -60,54 +60,54 @@ const MetamaskProvider = () => {
     //an account in local storage. if there is we call the connect onLoad func
     //above which allows us to presist the connection and i also call connectWalletHandler
     // which sets up web3.js so we can call web3.eth.getAccounts()
-    useEffect(() => {            
+    useEffect(() => {
         if (acc != null) {
-            connectOnLoad()
+            connectOnLoad();
         }
-         connectWalletHandler()
-    }, [])
+        connectWalletHandler();
+    }, []);
 
 
     //however in the case where there is no item in local storage we use this
     //function to connect which is called when we click the connect button. its
     //essentially the same but we check if local storage is null if it is we activate
     //if its not then we disconnect. And when we disconnect we remove the acccount from local storage
-    async function connectOnClick() {        
+    async function connectOnClick() {
         if (localStorage.getItem("account") == null) {
 
             setLoading(true);
             try {
-                await activate(injected)
-                connected = true
+                await activate(injected);
+                connected = true;
             } catch (ex) {
-                console.log(ex)
+                console.log(ex);
             }
             // window.location.reload();
             var accounts1 = await web3.eth.getAccounts();
-            console.log("Accounts1: ", accounts1)
+            console.log("Accounts1: ", accounts1);
             acc = localStorage.setItem("account", accounts1);
-            console.log(acc)
-            setTimeout(function(){
-                setLoading(false)
-            }, 1600);//wait 2 seconds            
+            console.log(acc);
+            setTimeout(function () {
+                setLoading(false);
+            }, 1600); //wait 2 seconds            
         } else {
 
             disconnect();
-            connected = false
+            connected = false;
         }
     }
 
     async function disconnect() {
         try {
-        deactivate()
-        localStorage.removeItem("account");
+            deactivate();
+            localStorage.removeItem("account");
         } catch (ex) {
-        console.log(ex)
+            console.log(ex);
         }
     }
 
     return (
-    
+
         //remember the active boolean from useReactWeb3() stores a bool
         //depending on if the user is or is not connected there for we can 
         //use this as a conditon to render the button saying "Connect Wallet"
